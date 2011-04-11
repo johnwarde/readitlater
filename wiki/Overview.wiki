@@ -1,0 +1,24 @@
+#summary Save your favourite articles for off-line reading or on the underground.
+#labels Phase-Design
+
+= Introduction =
+
+This iPhone app will allow you save your favourite news articles from the web on-to your phone for quick off-line reading.  Set up your reading materials before you get on the train.
+
+
+= Details =
+
+The first version of this is a prototype for the purposes of assessment on the iPhone Programming course in Dublin Institute of Technology.
+ 
+Add your content here.  Format your content with:
+  * The first screen of this app will have an "Add Articles" button at the top of the screen and then a table list all the articles the user has marked as their favourites.
+  * The *very* first run of this app will obviously not have any articles listed below the "Add Articles" button but will have only one entry in the table with the text "no articles, click the above button" (or something similar)
+  * When the user clicks the "Add Articles" button the app will read the items in the configured RSS feed URL (multiple configurable will be available in the next version of the app) and list the title of all the items in  table.
+     * The user can then tap an individual article title to then see the full article along with date, summary, etc., The WebView class will be used to display the associated HTML document
+     * Also at the top of this article page will be a button to add the article to the user's favourites that appear of the first screen of the app, when this happens
+  * The article details will be stored in an SQLite database on the iPhone and will reflect the <item> fields in the RSS standard plus some administration fields such as "read", "deleted" etc., see below for more details.
+
+   
+Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
