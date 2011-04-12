@@ -16,7 +16,7 @@ Add your content here.  Format your content with:
   * When the user clicks the "Add Articles" button the app will read the items in the configured RSS feed URL (multiple configurable will be available in the next version of the app) and list the title of all the items in  table.
      * The user can then tap an individual article title to then see the full article along with date, summary, etc., The WebView class will be used to display the associated HTML document
      * Also at the top of this article page will be a button to add the article to the user's favourites that appear of the first screen of the app, when this happens
-  * The article details will be stored in an SQLite database on the iPhone and will reflect the <item> fields in the RSS 
+  * The article details will be stored in an SQLite database on the iPhone and will reflect the `<`item`>` fields in the RSS 
 standard plus some administration fields such as "read", "deleted" etc., see below for more details.
 
 
@@ -31,8 +31,8 @@ standard plus some administration fields such as "read", "deleted" etc., see bel
 ||enclosure||TEXT(255)||No||Yes||Allows a media file to be included with the item, not used in initial version||
 ||guid||TEXT(255)||No||Yes||Defines a unique identifier for the item||
 ||source||TEXT(255)||No||Yes||Specifies a third-party source for the item||
-||read||TEXT(255)||Yes||No||aaaa||
-||deleted||TEXT(255)||Yes||No||aaaa||
+||read||TEXT(255)||Yes||No||Indicates that the item has been read by the iPhone user||
+||deleted||TEXT(255)||Yes||No||Indicates that the item has been deleted by the iPhone user, these will be deleted from the DB on app exit||
 
 
 
