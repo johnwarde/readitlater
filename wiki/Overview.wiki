@@ -37,3 +37,11 @@ Add your content here.  Format your content with:
 || deleted || INTEGER || Yes || No || Indicates that the item has been deleted by the iPhone user, these will be deleted from the DB on app exit ||
 || enclosure || TEXT(???)||No||Yes||Allows a media file to be included with the item, not used in initial version||
 
+
+=Useful References=
+
+RSS Sytax
+[http://www.w3schools.com/rss/rss_reference.asp]
+
+SQLite
+[http://www.sqlite.org/]
