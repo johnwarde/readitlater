@@ -40,8 +40,12 @@ Add your content here.  Format your content with:
 
 =Useful References=
 
-RSS Sytax
-[http://www.w3schools.com/rss/rss_reference.asp]
+RSS Sytax [http://www.w3schools.com/rss/rss_reference.asp]
 
-SQLite
-[http://www.sqlite.org/]
+SQLite [http://www.sqlite.org/]
+
+iPhone Course Moodle [http://147.252.224.88/moodle]
+
+iOS Dev Center [http://developer.apple.com/devcenter/ios]
+
+iPhone Course Google Groups [https://groups.google.com/forum/#!forum/iphone-programming-dit-2011]
