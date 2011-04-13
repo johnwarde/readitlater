@@ -11,7 +11,8 @@
 @interface RootController : UIViewController
 	<UITableViewDataSource, UITableViewDelegate>
 {
-	UITableView* tableSavedArticles;
+	UITableView		*tableSavedArticles;
+	NSMutableArray	*articles;
 
 }
 @property (nonatomic, retain) IBOutlet UITableView *tableSavedArticles;
