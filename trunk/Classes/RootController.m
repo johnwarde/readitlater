@@ -7,6 +7,8 @@
 //
 
 #import "RootController.h"
+#import "ReadItLaterDelegate.h"
+#import "Article.h"
 
 @implementation RootController
 
@@ -31,12 +33,14 @@
 */
 
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
+	articles = delegate.articles;
     [super viewDidLoad];
 }
-*/
+
 
 
 
@@ -47,18 +51,30 @@
 	if (nil == cell) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"cell"] autorelease];
 	}
-	cell.textLabel.text = @"Testing";
+	Article *thisArticle = [articles objectAtIndex: indexPath.row];
+	cell.textLabel.text = thisArticle.title;
 	return cell;
 }
 
 - (NSInteger) tableView:(UITableView *) tv numberOfRowsInSection: (NSInteger) section
 {
-	return 3;
+	return [articles count];
 }
 
 - (void) tableView:(UITableView *) tv
 	didSelectRowAtIndexPath:(NSIndexPath *) indexPath
 {
+	Article *thisArticle = [articles objectAtIndex:indexPath.row];
+
+	UIAlertView *alert = [[UIAlertView alloc] 
+						  initWithTitle:thisArticle.title 
+						  message:thisArticle.link 
+						  delegate:self 
+						  cancelButtonTitle:nil 
+						  otherButtonTitles:@"OK", nil];
+	[alert show];
+	[alert release];
+
 	[tv deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -86,6 +102,7 @@
 
 - (void)dealloc {
 	[tableSavedArticles release];
+	[articles release];
     [super dealloc];
 }
 

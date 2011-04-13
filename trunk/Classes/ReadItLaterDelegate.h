@@ -13,10 +13,15 @@
 @interface ReadItLaterDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     RootController *viewController;
+	NSMutableArray *articles;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet RootController *viewController;
+@property (nonatomic, retain) NSMutableArray *articles;
+
+-(NSString *)copyDatabaseToDocuments;
+-(void) readArticlesFromDatabaseWithPath:(NSString *) filePath;
 
 @end
 
