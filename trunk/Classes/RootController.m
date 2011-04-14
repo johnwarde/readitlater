@@ -8,6 +8,7 @@
 
 #import "RootController.h"
 #import "SavedArticleController.h"
+#import "WebArticlesController.h"
 #import "ReadItLaterDelegate.h"
 #import "Article.h"
 
@@ -89,7 +90,12 @@
 
 
 -(IBAction) addArticlesClicked:(id) sender {
-
+	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
+	WebArticlesController *webArticlesView = [[WebArticlesController alloc] init];
+	[delegate.navController pushViewController:webArticlesView animated:YES];
+	[webArticlesView release];
+	
+/*
 	 UIAlertView *alert = [[UIAlertView alloc] 
 						   initWithTitle:@"Information" 
 						   message:@"In RootController::addArticlesClicked"
@@ -98,6 +104,7 @@
 						   otherButtonTitles:@"OK", nil];
 	 [alert show];
 	 [alert release]; 
+*/
 }
 
 /*
