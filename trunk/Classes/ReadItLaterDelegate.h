@@ -14,10 +14,12 @@
     UIWindow *window;
     RootController *viewController;
 	NSMutableArray *articles;
+	UINavigationController *navController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet RootController *viewController;
+@property (nonatomic, retain) IBOutlet UINavigationController *navController;
 @property (nonatomic, retain) NSMutableArray *articles;
 
 -(NSString *)copyDatabaseToDocuments;
