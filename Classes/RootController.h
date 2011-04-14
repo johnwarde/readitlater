@@ -17,6 +17,7 @@
 }
 @property (nonatomic, retain) IBOutlet UITableView *tableSavedArticles;
 
+-(IBAction) addArticlesClicked:(id) sender;
 
 @end
 

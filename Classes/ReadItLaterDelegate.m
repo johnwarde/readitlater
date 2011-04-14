@@ -16,6 +16,7 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize articles;
+@synthesize navController;
 
 
 #pragma mark -
@@ -28,7 +29,9 @@
 	NSString *filePath = [self copyDatabaseToDocuments];
 	[self readArticlesFromDatabaseWithPath:filePath];
 	// Set the view controller as the window's root view controller and display.
-    self.window.rootViewController = self.viewController;
+    //self.window.rootViewController = self.viewController;
+	navController.viewControllers = [NSArray arrayWithObject:viewController];
+	[window addSubview:navController.view];
     [self.window makeKeyAndVisible];
 
     return YES;
