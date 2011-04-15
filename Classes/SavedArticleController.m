@@ -53,7 +53,16 @@
 	titleLabel.text = thisArticle.title;
 	descriptionLabel.text = thisArticle.description;
 	linkLabel.text = thisArticle.link;
-	
+
+/*
+	// Convert ISO date to a more user friendly format
+	NSDate *datePublished = [[NSDate alloc] initWithString:thisArticle.pubdate];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    NSString *articleDateString = [dateFormatter stringFromDate:datePublished];
+	dateAndAuthorLabel.text = articleDateString;
+*/
 	dateAndAuthorLabel.text = thisArticle.pubdate;
 	if ([thisArticle.author length] > 0) {
 		dateAndAuthorLabel.text = [dateAndAuthorLabel.text stringByAppendingString: @", "];
@@ -92,6 +101,12 @@
 - (void)dealloc {
 	[index release];
 	[titleLabel release];
+	[descriptionLabel release];
+	[linkLabel release];
+	[dateAndAuthorLabel release];
+	[sourceLabel release];
+	[categoryLabel release];
+	[commentsLabel release];	
     [super dealloc];
 }
 
