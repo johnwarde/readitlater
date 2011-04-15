@@ -10,9 +10,12 @@
 
 
 @interface WebArticlesController : UIViewController {
+	NSMutableData *feedContent;
 	IBOutlet UIActivityIndicatorView *waitIcon;
 }
-
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *waitIcon;
+
+- (IBAction) refreshFeedClicked:(id) sender;
+- (void)startFeedRefresh;
 
 @end
