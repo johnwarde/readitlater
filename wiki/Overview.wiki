@@ -49,3 +49,5 @@ iPhone Course Moodle [http://147.252.224.88/moodle]
 iOS Dev Center [http://developer.apple.com/devcenter/ios]
 
 iPhone Course Google Groups [https://groups.google.com/forum/#!forum/iphone-programming-dit-2011]
+
+Learning iPhone Programming [http://my.safaribooksonline.com/book/programming/iphone/9781449380052]
