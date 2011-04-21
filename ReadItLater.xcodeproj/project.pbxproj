@@ -19,6 +19,8 @@
 		3F35AB8A13574F3700F435E0 /* SavedArticleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F35AB8813574F3700F435E0 /* SavedArticleController.xib */; };
 		3F35AC6A1357B7A100F435E0 /* WebArticlesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F35AC681357B7A100F435E0 /* WebArticlesController.m */; };
 		3F35AC6B1357B7A100F435E0 /* WebArticlesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F35AC691357B7A100F435E0 /* WebArticlesController.xib */; };
+		3F7FD9BB13607380002B5791 /* WebArticleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7FD9B913607380002B5791 /* WebArticleController.m */; };
+		3F7FD9BC13607380002B5791 /* WebArticleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7FD9BA13607380002B5791 /* WebArticleController.xib */; };
 		3FDCB48F1354E582007B9708 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCB48E1354E582007B9708 /* Article.m */; };
 		3FE415BC13589D5C00B302D5 /* readitlater.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3FE415BB13589D5C00B302D5 /* readitlater.sqlite */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,9 @@
 		3F35AC671357B7A100F435E0 /* WebArticlesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebArticlesController.h; sourceTree = "<group>"; };
 		3F35AC681357B7A100F435E0 /* WebArticlesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebArticlesController.m; sourceTree = "<group>"; };
 		3F35AC691357B7A100F435E0 /* WebArticlesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebArticlesController.xib; path = Classes/WebArticlesController.xib; sourceTree = "<group>"; };
+		3F7FD9B813607380002B5791 /* WebArticleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebArticleController.h; sourceTree = "<group>"; };
+		3F7FD9B913607380002B5791 /* WebArticleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebArticleController.m; sourceTree = "<group>"; };
+		3F7FD9BA13607380002B5791 /* WebArticleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebArticleController.xib; path = Classes/WebArticleController.xib; sourceTree = "<group>"; };
 		3FDCB48D1354E582007B9708 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
 		3FDCB48E1354E582007B9708 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		3FE415BB13589D5C00B302D5 /* readitlater.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = readitlater.sqlite; sourceTree = "<group>"; };
@@ -75,6 +80,8 @@
 				3F35AB8713574F3700F435E0 /* SavedArticleController.m */,
 				3F35AC671357B7A100F435E0 /* WebArticlesController.h */,
 				3F35AC681357B7A100F435E0 /* WebArticlesController.m */,
+				3F7FD9B813607380002B5791 /* WebArticleController.h */,
+				3F7FD9B913607380002B5791 /* WebArticleController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -115,6 +122,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				3F35AB8813574F3700F435E0 /* SavedArticleController.xib */,
 				3F35AC691357B7A100F435E0 /* WebArticlesController.xib */,
+				3F7FD9BA13607380002B5791 /* WebArticleController.xib */,
 				8D1107310486CEB800E47090 /* ReadItLater-Info.plist */,
 				3FE415BB13589D5C00B302D5 /* readitlater.sqlite */,
 			);
@@ -185,6 +193,7 @@
 				3F35AB8A13574F3700F435E0 /* SavedArticleController.xib in Resources */,
 				3F35AC6B1357B7A100F435E0 /* WebArticlesController.xib in Resources */,
 				3FE415BC13589D5C00B302D5 /* readitlater.sqlite in Resources */,
+				3F7FD9BC13607380002B5791 /* WebArticleController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +210,7 @@
 				3FDCB48F1354E582007B9708 /* Article.m in Sources */,
 				3F35AB8913574F3700F435E0 /* SavedArticleController.m in Sources */,
 				3F35AC6A1357B7A100F435E0 /* WebArticlesController.m in Sources */,
+				3F7FD9BB13607380002B5791 /* WebArticleController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,17 +1,16 @@
 //
-//  SavedArticleController.h
+//  WebArticleController.h
 //  ReadItLater
 //
-//  Created by Student on 14/04/2011.
+//  Created by Student on 21/04/2011.
 //  Copyright 2011 SOC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Article.h"
 
-@interface SavedArticleController : UIViewController {
+
+@interface WebArticleController : UIViewController {
 	NSIndexPath *index;
-	Article* thisArticle;
 	
 	IBOutlet UILabel *titleLabel;
 	IBOutlet UITextView *descriptionLabel;
@@ -31,6 +30,6 @@
 @property(nonatomic, retain) IBOutlet UILabel *commentsLabel;
 
 -(id)initWithIndexPath: (NSIndexPath *)indexPath;
--(IBAction) deleteArticleClicked:(id) sender;
+-(IBAction) saveArticleClicked:(id) sender;
 
 @end

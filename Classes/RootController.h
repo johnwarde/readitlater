@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RootController : UIViewController
-	<UITableViewDataSource, UITableViewDelegate>
+	<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 {
 	UITableView		*tableSavedArticles;
 	NSMutableArray	*articles;

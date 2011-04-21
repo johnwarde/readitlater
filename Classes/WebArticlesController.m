@@ -7,6 +7,7 @@
 //
 
 #import "WebArticlesController.h"
+#import "WebArticleController.h"
 #import "ReadItLaterDelegate.h"
 #import "Article.h"
 
@@ -15,9 +16,17 @@
 @synthesize tableOnlineArticles;
 
 @synthesize currentTitle;
-@synthesize currentDate;
-@synthesize currentSummary;
+@synthesize currentDescription;
 @synthesize currentLink;
+@synthesize currentPubDate;
+@synthesize currentAuthor;
+@synthesize currentCategory;
+@synthesize currentComments;
+@synthesize currentGuid;
+@synthesize currentSource;
+
+
+
 @synthesize waitIcon;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -94,13 +103,12 @@
 	else
 		NSLog(@"Error Error Error!!!");
 	
-	//Article thisArticle = [[Article alloc] init];
-//	Article thisArticle;
+/*	debug
 	for (int i = 0; i < [onlineArticles count]; i++) {
 		currentArticle = [onlineArticles objectAtIndex:i];
 		NSLog(@"Article %d: title = [%@], link = [%@], description = [%@], ", i, currentArticle.title, currentArticle.link, currentArticle.description);
 	}
-	
+*/	
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -111,17 +119,28 @@
 	[errorAlert show];
 }
 
+
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{  
     if ([currentElement isEqualToString:@"title"]) {  
         [self.currentTitle appendString:string];  
     } else if ([currentElement isEqualToString:@"link"]) {  
         [self.currentLink appendString:string];  
     } else if ([currentElement isEqualToString:@"description"]) {  
-        [self.currentSummary appendString:string];  
+        [self.currentDescription appendString:string];
+    } else if ([currentElement isEqualToString:@"author"]) {  
+        [self.currentAuthor appendString:string];
+    } else if ([currentElement isEqualToString:@"category"]) {  
+        [self.currentCategory appendString:string];
+    } else if ([currentElement isEqualToString:@"comments"]) {  
+        [self.currentComments appendString:string];
+    } else if ([currentElement isEqualToString:@"guid"]) {  
+        [self.currentGuid appendString:string];
+    } else if ([currentElement isEqualToString:@"source"]) {  
+        [self.currentSource appendString:string];
     } else if ([currentElement isEqualToString:@"pubDate"]) {  
-        [self.currentDate appendString:string];  
+        [self.currentPubDate appendString:string];  
         NSCharacterSet* charsToTrim = [NSCharacterSet characterSetWithCharactersInString:@" \n"];  
-        [self.currentDate setString: [self.currentDate stringByTrimmingCharactersInSet: charsToTrim]];  
+        [self.currentPubDate setString: [self.currentPubDate stringByTrimmingCharactersInSet: charsToTrim]];  
     }  
 }
 
@@ -129,13 +148,19 @@
 	currentElement = [elementName copy];  
 	
     if ([elementName isEqualToString:@"item"]) {  
-        currentArticle = [[Article alloc] init];
-        currentTitle = [[NSMutableString alloc] init];  
-        currentDate = [[NSMutableString alloc] init];  
-        currentSummary = [[NSMutableString alloc] init];  
-        currentLink = [[NSMutableString alloc] init];
+        currentArticle		= [[Article alloc] init];
+        currentTitle		= [[NSMutableString alloc] init];  
+        currentPubDate		= [[NSMutableString alloc] init];  
+        currentDescription	= [[NSMutableString alloc] init];
+        currentAuthor		= [[NSMutableString alloc] init];
+        currentCategory		= [[NSMutableString alloc] init];
+        currentComments		= [[NSMutableString alloc] init];
+        currentGuid			= [[NSMutableString alloc] init];
+        currentSource		= [[NSMutableString alloc] init];
     }  
 }
+
+
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
 	
@@ -143,22 +168,29 @@
 	if ([elementName isEqualToString:@"item"]) 
 	{
 	
-        currentArticle.title = currentTitle;  
-        currentArticle.link = currentLink;
-		currentArticle.description = currentSummary;
+        currentArticle.title		= currentTitle;  
+        currentArticle.link			= currentLink;
+		currentArticle.description	= currentDescription;
+		currentArticle.pubdate		= currentPubDate;
+		currentArticle.author		= currentAuthor;
+		currentArticle.category		= currentCategory;
+		currentArticle.comments		= currentComments;
+		currentArticle.guid			= currentGuid;
+		currentArticle.source		= currentSource;
 
         // Parse date here  
         NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];  
 		
         [dateFormatter setDateFormat:@"E, d LLL yyyy HH:mm:ss Z"]; // Thu, 18 Jun 2010 04:48:09 -0700  
-        NSDate *date = [dateFormatter dateFromString:self.currentDate];  		
+        NSDate *date = [dateFormatter dateFromString:self.currentPubDate];  		
 
-        currentArticle.pubdate = date;
+        //currentArticle.pubdate = date;
+        currentArticle.pubdate = [date description];
 		[onlineArticles addObject:currentArticle];
 		
 		NSLog(@"addObject: tite = [%@]", elementName);
 		NSLog(@"addObject: tite = [%@]", currentTitle);
-		NSLog(@"addObject: tite = [%@]", currentSummary);
+		NSLog(@"addObject: tite = [%@]", currentDescription);
 	}
 }
 
@@ -201,11 +233,11 @@ didSelectRowAtIndexPath:(NSIndexPath *) indexPath
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
 	
 	
-/*	
-	SavedArticleController *savedArticle = [[SavedArticleController alloc] initWithIndexPath:indexPath];
-	[delegate.navController pushViewController:savedArticle animated:YES];
-	[savedArticle release];
-*/	
+
+	WebArticleController *webArticle = [[WebArticleController alloc] initWithIndexPath:indexPath];
+	[delegate.navController pushViewController:webArticle animated:YES];
+	[webArticle release];
+	
 	
 	//Article *thisArticle = [articles objectAtIndex:indexPath.row];
 	/*

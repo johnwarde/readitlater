@@ -24,6 +24,7 @@
  */
 
 @interface Article : NSObject {
+	NSString *articleId;
 	NSString *title;
 	NSString *description;
 	NSString *link;
@@ -37,6 +38,7 @@
 	NSNumber *deleted;
 }
 
+@property (nonatomic, retain) NSString *articleId;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *link;
