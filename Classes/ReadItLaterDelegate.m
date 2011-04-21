@@ -16,6 +16,7 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize articles;
+@synthesize onlineArticles;
 @synthesize navController;
 
 
@@ -26,6 +27,7 @@
     
     // Override point for customization after application launch.
 	articles = [[NSMutableArray alloc] init];
+	onlineArticles = [[NSMutableArray alloc] init];
 	NSString *filePath = [self copyDatabaseToDocuments];
 	[self readArticlesFromDatabaseWithPath:filePath];
 	// Set the view controller as the window's root view controller and display.
@@ -148,6 +150,7 @@
     [viewController release];
     [window release];
 	[articles release];
+	[onlineArticles release];
     [super dealloc];
 }
 
