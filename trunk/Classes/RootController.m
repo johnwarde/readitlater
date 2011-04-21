@@ -41,10 +41,32 @@
 	self.title = @"Read It Later";
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
 	articles = delegate.articles;
+	delegate.navController.delegate = self;
     [super viewDidLoad];
 }
 
+/*
+- (void)viewWillAppear {
+	//ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
+	//articles = delegate.articles;
+    [super viewWillAppear];
+}
+*/
 
+
+- (void)navigationController:(UINavigationController *)navigationController 
+	  willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+	// if we are navigating back to the rootViewController, and the detailViewController's event
+	// has been deleted -  will title being NULL, then remove the events from the eventsList
+	// and reload the table view. This takes care of reloading the table view after adding an event too.
+	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];	
+	if (viewController == self && delegate.needDataRefresh) {
+		//[self.eventsList removeObject:self.detailViewController.event];
+		[delegate readArticlesFromDatabaseWithPath:delegate.savedFilePath];
+		articles = delegate.articles; // update link
+		[self.tableSavedArticles reloadData];
+	}
+}
 
 
 - (UITableViewCell *) tableView:(UITableView *) tv

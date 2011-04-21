@@ -21,16 +21,31 @@
 	//NSString * feed;
 	NSString *currentElement;  
 	//NewsItem * item;
-    NSMutableString * currentTitle, * currentDate, * currentSummary, * currentLink;  
+		NSMutableString *currentTitle;
+		NSMutableString *currentDescription;
+		NSMutableString *currentLink;
+		NSMutableString *currentPubDate;
+		NSMutableString *currentAuthor;
+		NSMutableString *currentCategory;
+		NSMutableString *currentComments;
+		NSMutableString *currentGuid;
+		NSMutableString *currentSource;
+		
 //	NSMutableArray * newsItems;
 }
 
 //@property (nonatomic, retain) NSMutableArray * newsItems;
 //@property (nonatomic, retain) NSString * feed;
 @property (retain, nonatomic) NSMutableString *currentTitle;
-@property (retain, nonatomic) NSMutableString *currentDate;
-@property (retain, nonatomic) NSMutableString *currentSummary;
+@property (retain, nonatomic) NSMutableString *currentDescription;
 @property (retain, nonatomic) NSMutableString *currentLink;
+@property (retain, nonatomic) NSMutableString *currentPubDate;
+@property (retain, nonatomic) NSMutableString *currentAuthor;
+@property (retain, nonatomic) NSMutableString *currentCategory;
+@property (retain, nonatomic) NSMutableString *currentComments;
+@property (retain, nonatomic) NSMutableString *currentGuid;
+@property (retain, nonatomic) NSMutableString *currentSource;
+
 @property (nonatomic, retain) IBOutlet UITableView     *tableOnlineArticles;
 
 
@@ -38,17 +53,7 @@
 
 - (IBAction) refreshFeedClicked:(id) sender;
 - (void)startFeedRefresh;
-
-
-
--(void) loadFeed;
-/*
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError;
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName;
-- (void)parserDidEndDocument:(NSXMLParser *)parser;
-*/
+- (void) loadFeed;
 
 
 @end

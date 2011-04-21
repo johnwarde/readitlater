@@ -1,17 +1,17 @@
 //
-//  SavedArticleController.m
+//  WebArticleController.m
 //  ReadItLater
 //
-//  Created by Student on 14/04/2011.
+//  Created by Student on 21/04/2011.
 //  Copyright 2011 SOC. All rights reserved.
 //
 
-#import "SavedArticleController.h"
+#import "WebArticleController.h"
 #import "ReadItLaterDelegate.h"
-//#import "Article.h"
+#import "Article.h"
 
 
-@implementation SavedArticleController
+@implementation WebArticleController
 
 
 @synthesize titleLabel;
@@ -44,26 +44,26 @@
 */
 
 
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
-//	Article *thisArticle = [delegate.articles objectAtIndex:index.row];
-	thisArticle = [delegate.articles objectAtIndex:index.row];
+	Article *thisArticle = [delegate.articles objectAtIndex:index.row];
 	
-	self.title = @"Saved Article";
+	self.title = @"Online Article";
 	titleLabel.text = thisArticle.title;
 	descriptionLabel.text = thisArticle.description;
 	linkLabel.text = thisArticle.link;
-
-/*
-	// Convert ISO date to a more user friendly format
-	NSDate *datePublished = [[NSDate alloc] initWithString:thisArticle.pubdate];
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    NSString *articleDateString = [dateFormatter stringFromDate:datePublished];
-	dateAndAuthorLabel.text = articleDateString;
-*/
+	
+	/*
+	 // Convert ISO date to a more user friendly format
+	 NSDate *datePublished = [[NSDate alloc] initWithString:thisArticle.pubdate];
+	 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	 [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+	 [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	 NSString *articleDateString = [dateFormatter stringFromDate:datePublished];
+	 dateAndAuthorLabel.text = articleDateString;
+	 */
 	dateAndAuthorLabel.text = thisArticle.pubdate;
 	if ([thisArticle.author length] > 0) {
 		dateAndAuthorLabel.text = [dateAndAuthorLabel.text stringByAppendingString: @", "];
@@ -77,22 +77,21 @@
 }
 
 
--(IBAction) deleteArticleClicked:(id) sender {
+-(IBAction) saveArticleClicked:(id) sender {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
-	NSLog(@"deleteArticleClicked: id = [%@]", thisArticle.articleId);
-	[delegate deleteArticleIdFromDatabase: thisArticle.articleId];
+	NSLog(@"deleteArticleClicked");
+	Article *newArticle = [[Article alloc] init];
+	newArticle.title = titleLabel.text;
+	newArticle.description = descriptionLabel.text;
+	newArticle.link = linkLabel.text;
+	NSArray *listItems = [dateAndAuthorLabel.text componentsSeparatedByString:@", "];
+	newArticle.pubdate = [listItems objectAtIndex:0];
+	newArticle.author = [listItems objectAtIndex:1];
+	newArticle.source = sourceLabel.text;
+	newArticle.category = categoryLabel.text;
+	newArticle.comments = commentsLabel.text;
+	[delegate saveArticleToDatabase: newArticle];
 	delegate.needDataRefresh = YES;
-	
-	/*
-	 UIAlertView *alert = [[UIAlertView alloc] 
-	 initWithTitle:@"Information" 
-	 message:@"In RootController::addArticlesClicked"
-	 delegate:self 
-	 cancelButtonTitle:nil 
-	 otherButtonTitles:@"OK", nil];
-	 [alert show];
-	 [alert release]; 
-	 */
 }
 
 /*
@@ -118,7 +117,6 @@
 
 
 - (void)dealloc {
-	[thisArticle release];
 	[index release];
 	[titleLabel release];
 	[descriptionLabel release];
@@ -126,7 +124,7 @@
 	[dateAndAuthorLabel release];
 	[sourceLabel release];
 	[categoryLabel release];
-	[commentsLabel release];
+	[commentsLabel release];		
     [super dealloc];
 }
 

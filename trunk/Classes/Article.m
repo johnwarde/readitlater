@@ -11,6 +11,7 @@
 
 @implementation Article
 
+@synthesize articleId;
 @synthesize title;
 @synthesize description;
 @synthesize link;
@@ -25,6 +26,7 @@
 
 
 -(void) dealloc {
+	[articleId release];
 	[title release];
 	[description release];
 	[link release];

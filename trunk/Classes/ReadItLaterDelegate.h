@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Article.h"
 
 @class RootController;
 
@@ -16,6 +17,8 @@
 	NSMutableArray *articles;
 	NSMutableArray *onlineArticles;
 	UINavigationController *navController;
+	NSString *savedFilePath;
+	BOOL needDataRefresh;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -23,9 +26,15 @@
 @property (nonatomic, retain) IBOutlet UINavigationController *navController;
 @property (nonatomic, retain) NSMutableArray *articles;
 @property (nonatomic, retain) NSMutableArray *onlineArticles;
+@property (nonatomic, retain) NSString *savedFilePath;
+@property (nonatomic) BOOL needDataRefresh;
 
 -(NSString *)copyDatabaseToDocuments;
 -(void) readArticlesFromDatabaseWithPath:(NSString *) filePath;
+-(void) saveArticleToDatabase: (Article *) newArticle;
+-(void) saveArticleToDatabaseWithPath:(NSString *) filePath withArticle: (Article *) newArticle;
+-(void) deleteArticleIdFromDatabase: (NSString *) targetId;
+-(void) deleteArticleIdFromDatabaseWithPath:(NSString *) filePath withId:(NSString *) targetId;
 
 @end
 
