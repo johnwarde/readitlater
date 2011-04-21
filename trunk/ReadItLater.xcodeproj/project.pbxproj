@@ -20,7 +20,7 @@
 		3F35AC6A1357B7A100F435E0 /* WebArticlesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F35AC681357B7A100F435E0 /* WebArticlesController.m */; };
 		3F35AC6B1357B7A100F435E0 /* WebArticlesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F35AC691357B7A100F435E0 /* WebArticlesController.xib */; };
 		3FDCB48F1354E582007B9708 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDCB48E1354E582007B9708 /* Article.m */; };
-		3FDCB5831355D94E007B9708 /* readitlater.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3FDCB5821355D94E007B9708 /* readitlater.sqlite */; };
+		3FE415BC13589D5C00B302D5 /* readitlater.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3FE415BB13589D5C00B302D5 /* readitlater.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +44,7 @@
 		3F35AC691357B7A100F435E0 /* WebArticlesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WebArticlesController.xib; path = Classes/WebArticlesController.xib; sourceTree = "<group>"; };
 		3FDCB48D1354E582007B9708 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
 		3FDCB48E1354E582007B9708 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
-		3FDCB5821355D94E007B9708 /* readitlater.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = readitlater.sqlite; sourceTree = "<group>"; };
+		3FE415BB13589D5C00B302D5 /* readitlater.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = readitlater.sqlite; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ReadItLater-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ReadItLater-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +116,7 @@
 				3F35AB8813574F3700F435E0 /* SavedArticleController.xib */,
 				3F35AC691357B7A100F435E0 /* WebArticlesController.xib */,
 				8D1107310486CEB800E47090 /* ReadItLater-Info.plist */,
-				3FDCB5821355D94E007B9708 /* readitlater.sqlite */,
+				3FE415BB13589D5C00B302D5 /* readitlater.sqlite */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -182,9 +182,9 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* RootController.xib in Resources */,
-				3FDCB5831355D94E007B9708 /* readitlater.sqlite in Resources */,
 				3F35AB8A13574F3700F435E0 /* SavedArticleController.xib in Resources */,
 				3F35AC6B1357B7A100F435E0 /* WebArticlesController.xib in Resources */,
+				3FE415BC13589D5C00B302D5 /* readitlater.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

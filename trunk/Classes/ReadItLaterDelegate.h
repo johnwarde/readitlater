@@ -14,6 +14,7 @@
     UIWindow *window;
     RootController *viewController;
 	NSMutableArray *articles;
+	NSMutableArray *onlineArticles;
 	UINavigationController *navController;
 }
 
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) IBOutlet RootController *viewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navController;
 @property (nonatomic, retain) NSMutableArray *articles;
+@property (nonatomic, retain) NSMutableArray *onlineArticles;
 
 -(NSString *)copyDatabaseToDocuments;
 -(void) readArticlesFromDatabaseWithPath:(NSString *) filePath;

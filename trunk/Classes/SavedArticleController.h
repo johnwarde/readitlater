@@ -12,7 +12,7 @@
 @interface SavedArticleController : UIViewController {
 	NSIndexPath *index;
 	
-	IBOutlet UILabel *titleLabel;
+	IBOutlet UITextView *titleLabel;
 	IBOutlet UILabel *descriptionLabel;
 	IBOutlet UILabel *linkLabel;
 	IBOutlet UILabel *dateAndAuthorLabel;
@@ -21,7 +21,7 @@
 	IBOutlet UILabel *commentsLabel;
 }
 
-@property(nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property(nonatomic, retain) IBOutlet UITextView *titleLabel;
 @property(nonatomic, retain) IBOutlet UILabel *descriptionLabel;
 @property(nonatomic, retain) IBOutlet UILabel *linkLabel;
 @property(nonatomic, retain) IBOutlet UILabel *dateAndAuthorLabel;
