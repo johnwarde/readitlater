@@ -32,7 +32,7 @@
 
 -(NSString *)copyDatabaseToDocuments;
 -(const unsigned char *) checkForNullWithResult: (sqlite3_stmt *) compiledStatement withFieldNo: (int) fieldNo;
--(void) readArticlesFromDatabaseWithPath:(NSString *) filePath;
+-(void) readArticlesFromDatabase;
 -(void) saveArticleToDatabase: (Article *) newArticle;
 -(void) deleteArticleIdFromDatabase: (NSString *) targetId;
 -(void) setReadFlagForArticle:(Article *) targetArticle withValue:(BOOL) boolValue;

@@ -50,8 +50,7 @@
 	  willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];	
 	if (viewController == self && delegate.needDataRefresh) {
-		[delegate readArticlesFromDatabaseWithPath:delegate.savedFilePath];
-		articles = delegate.articles; // update link
+		[delegate readArticlesFromDatabase];
 		[self.tableSavedArticles reloadData];
 	}
 }
@@ -68,7 +67,10 @@
 	cell.textLabel.text = thisArticle.title;
 	if (NO == [thisArticle.read boolValue]) {
 		cell.textLabel.textColor = [UIColor redColor];
+	} else {
+		cell.textLabel.textColor = [UIColor blackColor];
 	}
+
 	return cell;
 }
 

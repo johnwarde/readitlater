@@ -70,13 +70,12 @@
 	sourceLabel.text	= thisArticle.source;
 	categoryLabel.text	= thisArticle.category;
 	commentsLabel.text	= thisArticle.comments;	
-	
+
 	// Update the database indicate that the article has been read, if needed.
 	if (NO == [thisArticle.read boolValue]) {
-		delegate.needDataRefresh = YES;
 		[delegate setReadFlagForArticle: thisArticle withValue: YES];
 	}
-	
+	delegate.needDataRefresh = YES;	
     [super viewDidLoad];
 }
 
@@ -86,6 +85,7 @@
 	NSLog(@"deleteArticleClicked: id = [%@]", thisArticle.articleId);
 	[delegate deleteArticleIdFromDatabase: thisArticle.articleId];
 	delegate.needDataRefresh = YES;
+	[delegate.navController popViewControllerAnimated:YES];
 }
 
 /*
@@ -99,7 +99,6 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc. that aren't in use.
 }
 

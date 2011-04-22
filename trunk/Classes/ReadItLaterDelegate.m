@@ -31,11 +31,8 @@
 	self.needDataRefresh = NO;
 	articles = [[NSMutableArray alloc] init];
 	onlineArticles = [[NSMutableArray alloc] init];
-	//NSString *filePath = [self copyDatabaseToDocuments];
-	//savedFilePath = [self copyDatabaseToDocuments];
 	[self copyDatabaseToDocuments];
-	//[self readArticlesFromDatabaseWithPath:filePath];
-	[self readArticlesFromDatabaseWithPath:savedFilePath];
+	[self readArticlesFromDatabase];	
 	// Set the view controller as the window's root view controller and display.
 	navController.viewControllers = [NSArray arrayWithObject:viewController];
 	
@@ -119,12 +116,12 @@
 	return text;
 }
 
--(void) readArticlesFromDatabaseWithPath:(NSString *) filePath {
+-(void) readArticlesFromDatabase {
 	NSLog(@"%s: savedFilePath = [%@]", __FUNCTION__, savedFilePath);	
 	self.needDataRefresh = NO; // reset 
 	[self.articles removeAllObjects];
 	sqlite3 *database;
-	if (sqlite3_open([filePath UTF8String], &database) == SQLITE_OK) {
+	if (sqlite3_open([savedFilePath UTF8String], &database) == SQLITE_OK) {
 		const char *sqlStatement = "SELECT * FROM articles ORDER BY pubdate";
 		sqlite3_stmt *compiledStatement;
 		if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
@@ -218,7 +215,6 @@
 	sqlite3 *database;
 	NSLog(@"%s: savedFilePath = [%@]", __FUNCTION__, savedFilePath);
 	if (sqlite3_open([self.savedFilePath UTF8String], &database) == SQLITE_OK) {
-		//const char* strBoolValue = bo
 		NSMutableString* sqlPrepare = [NSMutableString stringWithFormat:@"UPDATE articles SET read = %d WHERE id =  %@", 
 									   (int) boolValue, targetArticle.articleId];
 		NSLog(@"setReadFlagForArticle: sql = [%@]", sqlPrepare);
