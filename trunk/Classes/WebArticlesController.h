@@ -16,26 +16,18 @@
 	Article			*currentArticle;
 	NSMutableData *feedContent;  // old method
 	IBOutlet UIActivityIndicatorView *waitIcon;
-
-	
-	//NSString * feed;
 	NSString *currentElement;  
-	//NewsItem * item;
-		NSMutableString *currentTitle;
-		NSMutableString *currentDescription;
-		NSMutableString *currentLink;
-		NSMutableString *currentPubDate;
-		NSMutableString *currentAuthor;
-		NSMutableString *currentCategory;
-		NSMutableString *currentComments;
-		NSMutableString *currentGuid;
-		NSMutableString *currentSource;
-		
-//	NSMutableArray * newsItems;
+	NSMutableString *currentTitle;
+	NSMutableString *currentDescription;
+	NSMutableString *currentLink;
+	NSMutableString *currentPubDate;
+	NSMutableString *currentAuthor;
+	NSMutableString *currentCategory;
+	NSMutableString *currentComments;
+	NSMutableString *currentGuid;
+	NSMutableString *currentSource;
 }
 
-//@property (nonatomic, retain) NSMutableArray * newsItems;
-//@property (nonatomic, retain) NSString * feed;
 @property (retain, nonatomic) NSMutableString *currentTitle;
 @property (retain, nonatomic) NSMutableString *currentDescription;
 @property (retain, nonatomic) NSMutableString *currentLink;

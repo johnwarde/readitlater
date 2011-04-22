@@ -6,10 +6,9 @@
 //  Copyright 2011 SOC. All rights reserved.
 //
 
-#include <sqlite3.h>
+
 #import "ReadItLaterDelegate.h"
 #import "RootController.h"
-//#import "Article.h"
 
 @implementation ReadItLaterDelegate
 
@@ -100,16 +99,29 @@
 	return filePath;
 }
 
+
+/*
+-(NSString *) assignWithNullCheck: (sqlite3_stmt *) compiledStatement withFieldNo: (int) fieldNo {
+	const char *fieldValue = (const char *)sqlite3_column_text(compiledStatement, fieldNo);
+	if (fieldValue != NULL) {
+		return [NSString stringWithUTF8String: fieldValue ];
+	} else {
+		return [NSString stringWithUTF8String: ""];
+	}
+}
+*/
+
+-(const unsigned char *) checkForNullWithResult: (sqlite3_stmt *) compiledStatement withFieldNo: (int) fieldNo {
+    const unsigned char *emptyString = (const unsigned char *) "";
+	const unsigned char *text = sqlite3_column_text(compiledStatement, fieldNo);
+	if (NULL == text) {
+		return emptyString;
+	}
+	return text;
+}
+
 -(void) readArticlesFromDatabaseWithPath:(NSString *) filePath {
 	self.needDataRefresh = NO; // reset after re-reading from database
-	/*
-	if ([self.articles count] > 0) {
-		for (int i = 0; i < [self.articles count]; i++) {
-			currentArticle = [onlineArticles objectAtIndex:i];
-			NSLog(@"Article %d: title = [%@], link = [%@], description = [%@], ", i, currentArticle.title, currentArticle.link, currentArticle.description);
-		}		
-	}
-	 */
 	[self.articles removeAllObjects];
 	sqlite3 *database;
 	if (sqlite3_open([filePath UTF8String], &database) == SQLITE_OK) {
@@ -117,35 +129,19 @@
 		sqlite3_stmt *compiledStatement;
 		if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
 			while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
-				NSString *articleId		= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 0)];
-				NSString *title			= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
-				NSString *description	= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
-				NSString *link			= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 3)];
-				NSString *pubdate		= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 4)];
-				NSString *author		= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 5)];
-				NSString *category		= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 6)];
-				// TODO: Need to check for nil/NULL value being returned from sqlite3_column_text() calls,
-				//       Workaround is to enter the "" string for those fields that do not require a value.
-				NSString *comments		= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 7)];
-				NSString *guid			= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 8)];
-				NSString *source		= [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 9)];
-				NSNumber *read			= [NSNumber numberWithInt :(int) sqlite3_column_int(compiledStatement, 10)];
-				NSNumber *deleted		= [NSNumber numberWithInt:(int) sqlite3_column_int(compiledStatement, 11)];
-				
 				Article *newArticle		= [[Article alloc] init];
-				newArticle.articleId	= articleId;
-				newArticle.title		= title;
-				newArticle.description	= description;
-				newArticle.link			= link;
-				newArticle.pubdate		= pubdate;
-				newArticle.author		= author;
-				newArticle.category		= category;
-				newArticle.comments		= comments;
-				newArticle.guid			= guid;
-				newArticle.source		= source;
-				newArticle.read			= read;
-				newArticle.deleted		= deleted;
-				
+				newArticle.articleId	= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 0]];
+				newArticle.title		= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 1]];
+				newArticle.description	= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 2]];
+				newArticle.link			= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 3]];	
+				newArticle.pubdate		= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 4]];
+				newArticle.author		= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 5]];				
+				newArticle.category		= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 6]];
+				newArticle.comments		= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 7]];	
+				newArticle.guid			= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 8]];	
+				newArticle.source		= [NSString stringWithUTF8String:(char *) [self checkForNullWithResult: compiledStatement withFieldNo: 9]];	
+				newArticle.read			= [NSNumber numberWithInt :(int) sqlite3_column_int(compiledStatement, 10)];
+				newArticle.deleted		= [NSNumber numberWithInt:(int) sqlite3_column_int(compiledStatement, 11)];
 				[self.articles addObject:newArticle];
 				[newArticle release];
 			}
@@ -175,7 +171,6 @@
 															newArticle.source
 		   ];
 		NSLog(@"saveArticleToDatabaseWithPath: sql = [%@]", sqlPrepare);
-		//const char *sqlStatement = "DELETE * FROM articles WHERE id = 4";
 		const char *sqlStatement = [sqlPrepare cStringUsingEncoding: NSISOLatin1StringEncoding];
 		sqlite3_stmt *compiledStatement;
 		if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
@@ -201,11 +196,9 @@
 
 -(void) deleteArticleIdFromDatabaseWithPath:(NSString *) filePath withId:(NSString *) targetId {
 	sqlite3 *database;
-	//if (sqlite3_open([filePath UTF8String], &database) == SQLITE_OK) {
 	if (sqlite3_open([self.savedFilePath UTF8String], &database) == SQLITE_OK) {
 		NSMutableString* sqlPrepare = [NSMutableString stringWithFormat:@"DELETE FROM articles WHERE id =  %@", targetId];
 		NSLog(@"deleteArticleIdFromDatabaseWithPath: sql = [%@]", sqlPrepare);
-		//const char *sqlStatement = "DELETE * FROM articles WHERE id = 4";
 		const char *sqlStatement = [sqlPrepare cStringUsingEncoding: NSISOLatin1StringEncoding];
 		
 		sqlite3_stmt *compiledStatement;

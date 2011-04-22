@@ -8,7 +8,6 @@
 
 #import "SavedArticleController.h"
 #import "ReadItLaterDelegate.h"
-//#import "Article.h"
 
 
 @implementation SavedArticleController
@@ -47,7 +46,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
-//	Article *thisArticle = [delegate.articles objectAtIndex:index.row];
 	thisArticle = [delegate.articles objectAtIndex:index.row];
 	
 	self.title = @"Saved Article";
@@ -82,17 +80,6 @@
 	NSLog(@"deleteArticleClicked: id = [%@]", thisArticle.articleId);
 	[delegate deleteArticleIdFromDatabase: thisArticle.articleId];
 	delegate.needDataRefresh = YES;
-	
-	/*
-	 UIAlertView *alert = [[UIAlertView alloc] 
-	 initWithTitle:@"Information" 
-	 message:@"In RootController::addArticlesClicked"
-	 delegate:self 
-	 cancelButtonTitle:nil 
-	 otherButtonTitles:@"OK", nil];
-	 [alert show];
-	 [alert release]; 
-	 */
 }
 
 /*
