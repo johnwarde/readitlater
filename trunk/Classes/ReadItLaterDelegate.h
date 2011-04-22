@@ -34,9 +34,7 @@
 -(const unsigned char *) checkForNullWithResult: (sqlite3_stmt *) compiledStatement withFieldNo: (int) fieldNo;
 -(void) readArticlesFromDatabaseWithPath:(NSString *) filePath;
 -(void) saveArticleToDatabase: (Article *) newArticle;
--(void) saveArticleToDatabaseWithPath:(NSString *) filePath withArticle: (Article *) newArticle;
 -(void) deleteArticleIdFromDatabase: (NSString *) targetId;
--(void) deleteArticleIdFromDatabaseWithPath:(NSString *) filePath withId:(NSString *) targetId;
 -(void) setReadFlagForArticle:(Article *) targetArticle withValue:(BOOL) boolValue;
 
 @end

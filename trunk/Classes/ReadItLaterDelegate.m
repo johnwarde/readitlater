@@ -37,7 +37,6 @@
 	//[self readArticlesFromDatabaseWithPath:filePath];
 	[self readArticlesFromDatabaseWithPath:savedFilePath];
 	// Set the view controller as the window's root view controller and display.
-    //self.window.rootViewController = self.viewController;
 	navController.viewControllers = [NSArray arrayWithObject:viewController];
 	
 	[window addSubview:navController.view];
@@ -121,7 +120,8 @@
 }
 
 -(void) readArticlesFromDatabaseWithPath:(NSString *) filePath {
-	self.needDataRefresh = NO; // reset after re-reading from database
+	NSLog(@"%s: savedFilePath = [%@]", __FUNCTION__, savedFilePath);	
+	self.needDataRefresh = NO; // reset 
 	[self.articles removeAllObjects];
 	sqlite3 *database;
 	if (sqlite3_open([filePath UTF8String], &database) == SQLITE_OK) {
@@ -151,14 +151,10 @@
 	sqlite3_close(database);
 }
 
-
 -(void) saveArticleToDatabase: (Article *) newArticle {
-	[self saveArticleToDatabaseWithPath:savedFilePath withArticle: newArticle];
-}
-
--(void) saveArticleToDatabaseWithPath:(NSString *) filePath withArticle: (Article *) newArticle {
+	NSLog(@"%s: savedFilePath = [%@]", __FUNCTION__, savedFilePath);	
 	sqlite3 *database;
-	if (sqlite3_open([filePath UTF8String], &database) == SQLITE_OK) {
+	if (sqlite3_open([self.savedFilePath UTF8String], &database) == SQLITE_OK) {
 		NSMutableString* sqlPrepare = 
 		  [NSMutableString stringWithFormat:@"INSERT INTO articles (title, description, link, pubdate, author, category, guid, source) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")", 
 															newArticle.title,
@@ -189,12 +185,8 @@
 }
 
 
-
 -(void) deleteArticleIdFromDatabase: (NSString *) targetId {
-	[self deleteArticleIdFromDatabaseWithPath:savedFilePath withId:targetId];
-}
-
--(void) deleteArticleIdFromDatabaseWithPath:(NSString *) filePath withId:(NSString *) targetId {
+	NSLog(@"%s: savedFilePath = [%@]", __FUNCTION__, savedFilePath);	
 	sqlite3 *database;
 	if (sqlite3_open([self.savedFilePath UTF8String], &database) == SQLITE_OK) {
 		NSMutableString* sqlPrepare = [NSMutableString stringWithFormat:@"DELETE FROM articles WHERE id =  %@", targetId];
@@ -220,6 +212,7 @@
 
 -(void) setReadFlagForArticle:(Article *) targetArticle withValue:(BOOL) boolValue {
 	sqlite3 *database;
+	NSLog(@"%s: savedFilePath = [%@]", __FUNCTION__, savedFilePath);
 	if (sqlite3_open([self.savedFilePath UTF8String], &database) == SQLITE_OK) {
 		//const char* strBoolValue = bo
 		NSMutableString* sqlPrepare = [NSMutableString stringWithFormat:@"UPDATE articles SET read = %d WHERE id =  %@", 
