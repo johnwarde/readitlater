@@ -58,6 +58,7 @@
 
 
 - (void)startFeedRefresh {
+	[onlineArticles removeAllObjects];	
 	[waitIcon startAnimating];
 	[self loadFeed];
 	[waitIcon stopAnimating];
@@ -69,8 +70,6 @@
 										  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
 										  timeoutInterval:10];
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-	
 }
 
 /*
@@ -91,10 +90,12 @@
 	NSURL * url = [NSURL URLWithString:@"http://readitlater.googlecode.com/files/rss.xml"];
 	
 	NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+	// Can we cast to NSData from feedContent (NSMutableData) 
+	//NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData: feedContent];
 	[xmlParser setDelegate:self];
 
-	[onlineArticles release]; // release last refresh
-	onlineArticles = [[NSMutableArray alloc] init];
+	// bad [onlineArticles release]; // release last refresh
+	//onlineArticles = [[NSMutableArray alloc] init];
 	//Start parsing the XML file.
 	BOOL success = [xmlParser parse];
 	
@@ -285,6 +286,7 @@ connection didFailWithError:(NSError *)error
 	//. . . implementation code would go here ...
 	NSString *content = [[NSString alloc] initWithBytes:[feedContent bytes] length:[feedContent length] encoding:NSUTF8StringEncoding];
 	NSLog(@"Data = %@", content);
+	// Can we cast to NSData from feedContent (NSMutableData) 
 	[waitIcon stopAnimating];
 	[content release];
 }

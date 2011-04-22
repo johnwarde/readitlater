@@ -48,7 +48,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
-	Article *thisArticle = [delegate.articles objectAtIndex:index.row];
+	Article *thisArticle = [delegate.onlineArticles objectAtIndex:index.row];
 	
 	self.title = @"Online Article";
 	titleLabel.text = thisArticle.title;
