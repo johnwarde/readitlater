@@ -315,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SavedArticleController.m</string>
+								<string>WebArticlesController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SavedArticleController.m</string>
+										<string>WebArticlesController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3F2A86C21361E2FE00EF781A</string>
+										<string>3F2A86D81361E57600EF781A</string>
 										<key>history</key>
 										<array>
 											<string>3F7FD9D3136076B0002B5791</string>
@@ -335,14 +335,14 @@
 											<string>3F2A85551361B15800EF781A</string>
 											<string>3F2A86061361CC6700EF781A</string>
 											<string>3F2A86181361CD1E00EF781A</string>
-											<string>3F2A863E1361D23A00EF781A</string>
 											<string>3F2A863F1361D23A00EF781A</string>
 											<string>3F2A86401361D23A00EF781A</string>
 											<string>3F2A86561361D3D500EF781A</string>
 											<string>3F2A86821361DB4100EF781A</string>
-											<string>3F2A86971361DEA600EF781A</string>
 											<string>3F2A86C01361E2FE00EF781A</string>
-											<string>3F2A86C11361E2FE00EF781A</string>
+											<string>3F2A86CD1361E4D500EF781A</string>
+											<string>3F2A86CE1361E4D500EF781A</string>
+											<string>3F2A86971361DEA600EF781A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -540,7 +540,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3F2A86C31361E2FE00EF781A</string>
 		<string>3F2A85271361AE4400EF781A</string>
 		<string>3FBA6B21134F3B7800DB2937</string>
 		<string>3F2A84181361955200EF781A</string>

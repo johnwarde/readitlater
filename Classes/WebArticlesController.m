@@ -64,13 +64,17 @@
 	[waitIcon stopAnimating];
 	return;
 	
+/*	
+    // This code works, may try asynchronous download of feed again, get the NSXMLParser to parse the downloaded data
 	NSString *string = [NSString stringWithFormat:@"http://readitlater.googlecode.com/files/rss.xml"];
 	NSURL *url = [[NSURL URLWithString:string] retain];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url 
 										  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
 										  timeoutInterval:10];
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-}
+    
+*/
+ }
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -87,6 +91,7 @@
 -(void) loadFeed
 {
 	//NSURL * url = [NSURL URLWithString:@"http://tunepal.wordpress.com/feed/"];
+	//NSURL * url = [NSURL URLWithString:@"http://code.google.com/feeds/p/readitlater/updates/basic"];
 	NSURL * url = [NSURL URLWithString:@"http://readitlater.googlecode.com/files/rss.xml"];
 	
 	NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
