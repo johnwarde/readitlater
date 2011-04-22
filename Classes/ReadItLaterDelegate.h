@@ -37,6 +37,7 @@
 -(void) saveArticleToDatabaseWithPath:(NSString *) filePath withArticle: (Article *) newArticle;
 -(void) deleteArticleIdFromDatabase: (NSString *) targetId;
 -(void) deleteArticleIdFromDatabaseWithPath:(NSString *) filePath withId:(NSString *) targetId;
+-(void) setReadFlagForArticle:(Article *) targetArticle withValue:(BOOL) boolValue;
 
 @end
 
