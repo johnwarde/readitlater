@@ -140,7 +140,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					20,
-					780,
+					761,
 					20,
 					48,
 					43,
@@ -419,6 +419,10 @@
 			3F2A86E81361E62200EF781A /* PBXTextBookmark */ = 3F2A86E81361E62200EF781A /* PBXTextBookmark */;
 			3F2A86EB1361E62500EF781A /* PBXTextBookmark */ = 3F2A86EB1361E62500EF781A /* PBXTextBookmark */;
 			3F2A86EC1361E62500EF781A /* PBXTextBookmark */ = 3F2A86EC1361E62500EF781A /* PBXTextBookmark */;
+			3F2A86F11361E73800EF781A /* PBXTextBookmark */ = 3F2A86F11361E73800EF781A /* PBXTextBookmark */;
+			3F2A86F21361E73800EF781A /* PBXTextBookmark */ = 3F2A86F21361E73800EF781A /* PBXTextBookmark */;
+			3F2A86F51361E73C00EF781A /* PBXTextBookmark */ = 3F2A86F51361E73C00EF781A /* PBXTextBookmark */;
+			3F2A86FD1361E7B900EF781A /* PBXTextBookmark */ = 3F2A86FD1361E7B900EF781A /* PBXTextBookmark */;
 			3F7FD9D3136076B0002B5791 = 3F7FD9D3136076B0002B5791 /* PlistBookmark */;
 			3F7FDB1F136097A7002B5791 = 3F7FDB1F136097A7002B5791 /* PBXTextBookmark */;
 			3F7FDB4E1360B2F4002B5791 = 3F7FDB4E1360B2F4002B5791 /* PBXTextBookmark */;
@@ -3150,6 +3154,46 @@
 		vrLen = 936;
 		vrLoc = 2437;
 	};
+	3F2A86F11361E73800EF781A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F35AC681357B7A100F435E0 /* WebArticlesController.m */;
+		name = "WebArticlesController.m: 61";
+		rLen = 0;
+		rLoc = 1514;
+		rType = 0;
+		vrLen = 359;
+		vrLoc = 1551;
+	};
+	3F2A86F21361E73800EF781A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F35AC681357B7A100F435E0 /* WebArticlesController.m */;
+		name = "WebArticlesController.m: 61";
+		rLen = 0;
+		rLoc = 1514;
+		rType = 0;
+		vrLen = 221;
+		vrLoc = 1412;
+	};
+	3F2A86F51361E73C00EF781A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F35AC681357B7A100F435E0 /* WebArticlesController.m */;
+		name = "WebArticlesController.m: 99";
+		rLen = 0;
+		rLoc = 2980;
+		rType = 0;
+		vrLen = 936;
+		vrLoc = 2437;
+	};
+	3F2A86FD1361E7B900EF781A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3F35AC681357B7A100F435E0 /* WebArticlesController.m */;
+		name = "WebArticlesController.m: 99";
+		rLen = 0;
+		rLoc = 2980;
+		rType = 0;
+		vrLen = 971;
+		vrLoc = 1097;
+	};
 	3F35AB8613574F3700F435E0 /* SavedArticleController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {963, 481}}";
@@ -3175,9 +3219,9 @@
 	};
 	3F35AC681357B7A100F435E0 /* WebArticlesController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1706, 4420}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1706, 4524}}";
 			sepNavSelRange = "{2980, 0}";
-			sepNavVisRange = "{2437, 936}";
+			sepNavVisRange = "{1097, 971}";
 			sepNavWindowFrame = "{{15, 113}, {1193, 660}}";
 		};
 	};
