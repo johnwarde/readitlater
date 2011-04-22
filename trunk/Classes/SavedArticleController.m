@@ -111,7 +111,6 @@
 
 
 - (void)dealloc {
-	[thisArticle release];
 	[index release];
 	[titleLabel release];
 	[descriptionLabel release];

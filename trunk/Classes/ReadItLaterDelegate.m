@@ -156,7 +156,7 @@
 	sqlite3 *database;
 	if (sqlite3_open([self.savedFilePath UTF8String], &database) == SQLITE_OK) {
 		NSMutableString* sqlPrepare = 
-		  [NSMutableString stringWithFormat:@"INSERT INTO articles (title, description, link, pubdate, author, category, guid, source) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")", 
+		  [NSMutableString stringWithFormat:@"INSERT INTO articles (title, description, link, pubdate, author, category, guid, source, read, deleted) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", 0, 0)", 
 															newArticle.title,
 															newArticle.description,
 															newArticle.link,
@@ -166,6 +166,10 @@
 															newArticle.guid,
 															newArticle.source
 		   ];
+		[sqlPrepare replaceOccurrencesOfString:@"(null)" 
+												 withString:@"" 
+												    options:NSCaseInsensitiveSearch 
+													  range:NSMakeRange(0, [sqlPrepare length])];
 		NSLog(@"saveArticleToDatabaseWithPath: sql = [%@]", sqlPrepare);
 		const char *sqlStatement = [sqlPrepare cStringUsingEncoding: NSISOLatin1StringEncoding];
 		sqlite3_stmt *compiledStatement;
@@ -203,7 +207,7 @@
 		if(sqlite3_step(compiledStatement) != SQLITE_DONE ) {
 			NSLog( @"Error: %s", sqlite3_errmsg(database) );
 		} else {
-			NSLog( @"Deleted row id = %d", targetId);
+			NSLog( @"Deleted row id = %@", targetId);
 		}	
 		sqlite3_finalize(compiledStatement);
 	}
@@ -230,7 +234,7 @@
 		if(sqlite3_step(compiledStatement) != SQLITE_DONE ) {
 			NSLog( @"Error: %s", sqlite3_errmsg(database) );
 		} else {
-			NSLog( @"Updated row id = %d", targetArticle.articleId);
+			NSLog( @"Updated row id = %@", targetArticle.articleId);
 		}	
 		sqlite3_finalize(compiledStatement);
 	}

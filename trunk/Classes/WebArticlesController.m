@@ -94,8 +94,6 @@
 	//NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData: feedContent];
 	[xmlParser setDelegate:self];
 
-	// bad [onlineArticles release]; // release last refresh
-	//onlineArticles = [[NSMutableArray alloc] init];
 	//Start parsing the XML file.
 	BOOL success = [xmlParser parse];
 	
@@ -103,13 +101,6 @@
 		NSLog(@"No Errors");
 	else
 		NSLog(@"Error Error Error!!!");
-	
-/*	debug
-	for (int i = 0; i < [onlineArticles count]; i++) {
-		currentArticle = [onlineArticles objectAtIndex:i];
-		NSLog(@"Article %d: title = [%@], link = [%@], description = [%@], ", i, currentArticle.title, currentArticle.link, currentArticle.description);
-	}
-*/	
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -150,7 +141,8 @@
 	
     if ([elementName isEqualToString:@"item"]) {  
         currentArticle		= [[Article alloc] init];
-        currentTitle		= [[NSMutableString alloc] init];  
+        currentTitle		= [[NSMutableString alloc] init];
+        currentLink			= [[NSMutableString alloc] init];		
         currentPubDate		= [[NSMutableString alloc] init];  
         currentDescription	= [[NSMutableString alloc] init];
         currentAuthor		= [[NSMutableString alloc] init];
@@ -162,12 +154,30 @@
 }
 
 
+- (void) postProcessFieldValue: (NSMutableString *) targetString {
+	NSCharacterSet* charsToTrim = [NSCharacterSet characterSetWithCharactersInString:@" \n\t"];  
+	[targetString setString: [targetString stringByTrimmingCharactersInSet: charsToTrim]];
+	if ([targetString length] < 1) {
+		[targetString setString: @""];
+	}
+	if ([targetString isEqualToString:@"(null)"]) {
+		[targetString setString: @""];
+	}
+}
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
 	
 	NSLog(@"ended element: %@", elementName);
 	if ([elementName isEqualToString:@"item"]) 
 	{
+		[self postProcessFieldValue: currentTitle];
+		[self postProcessFieldValue: currentLink];
+		[self postProcessFieldValue: currentDescription];
+		[self postProcessFieldValue: currentPubDate];
+		[self postProcessFieldValue: currentCategory];
+		[self postProcessFieldValue: currentComments];
+		[self postProcessFieldValue: currentGuid];
+		[self postProcessFieldValue: currentSource];
 	
         currentArticle.title		= currentTitle;  
         currentArticle.link			= currentLink;
@@ -185,13 +195,20 @@
         [dateFormatter setDateFormat:@"E, d LLL yyyy HH:mm:ss Z"]; // Thu, 18 Jun 2010 04:48:09 -0700  
         NSDate *date = [dateFormatter dateFromString:self.currentPubDate];  		
 
-        //currentArticle.pubdate = date;
         currentArticle.pubdate = [date description];
 		[onlineArticles addObject:currentArticle];
 		
-		NSLog(@"addObject: tite = [%@]", elementName);
-		NSLog(@"addObject: tite = [%@]", currentTitle);
-		NSLog(@"addObject: tite = [%@]", currentDescription);
+		NSLog(@"addObject: elementName = [%@]", elementName);
+		
+		NSLog(@"addObject: currentArticle.title			= [%@]", currentArticle.title);		
+		NSLog(@"addObject: currentArticle.link			= [%@]", currentArticle.link);		
+		NSLog(@"addObject: currentArticle.description	= [%@]", currentArticle.description);		
+		NSLog(@"addObject: currentArticle.pubdate		= [%@]", currentArticle.pubdate);		
+		NSLog(@"addObject: currentArticle.author		= [%@]", currentArticle.author);		
+		NSLog(@"addObject: currentArticle.category		= [%@]", currentArticle.category);		
+		NSLog(@"addObject: currentArticle.comments		= [%@]", currentArticle.comments);		
+		NSLog(@"addObject: currentArticle.guid			= [%@]", currentArticle.guid);		
+		NSLog(@"addObject: currentArticle.source		= [%@]", currentArticle.source);			
 	}
 }
 
