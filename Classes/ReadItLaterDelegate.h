@@ -6,6 +6,7 @@
 //  Copyright 2011 SOC. All rights reserved.
 //
 
+#include <sqlite3.h>
 #import <UIKit/UIKit.h>
 #import "Article.h"
 
@@ -30,6 +31,7 @@
 @property (nonatomic) BOOL needDataRefresh;
 
 -(NSString *)copyDatabaseToDocuments;
+-(const unsigned char *) checkForNullWithResult: (sqlite3_stmt *) compiledStatement withFieldNo: (int) fieldNo;
 -(void) readArticlesFromDatabaseWithPath:(NSString *) filePath;
 -(void) saveArticleToDatabase: (Article *) newArticle;
 -(void) saveArticleToDatabaseWithPath:(NSString *) filePath withArticle: (Article *) newArticle;

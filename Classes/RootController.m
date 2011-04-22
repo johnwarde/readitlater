@@ -45,23 +45,11 @@
     [super viewDidLoad];
 }
 
-/*
-- (void)viewWillAppear {
-	//ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
-	//articles = delegate.articles;
-    [super viewWillAppear];
-}
-*/
-
 
 - (void)navigationController:(UINavigationController *)navigationController 
 	  willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-	// if we are navigating back to the rootViewController, and the detailViewController's event
-	// has been deleted -  will title being NULL, then remove the events from the eventsList
-	// and reload the table view. This takes care of reloading the table view after adding an event too.
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];	
 	if (viewController == self && delegate.needDataRefresh) {
-		//[self.eventsList removeObject:self.detailViewController.event];
 		[delegate readArticlesFromDatabaseWithPath:delegate.savedFilePath];
 		articles = delegate.articles; // update link
 		[self.tableSavedArticles reloadData];
@@ -95,18 +83,6 @@
 	SavedArticleController *savedArticle = [[SavedArticleController alloc] initWithIndexPath:indexPath];
 	[delegate.navController pushViewController:savedArticle animated:YES];
 	[savedArticle release];
-	
-	//Article *thisArticle = [articles objectAtIndex:indexPath.row];
-/*
-	UIAlertView *alert = [[UIAlertView alloc] 
-						  initWithTitle:thisArticle.title 
-						  message:thisArticle.link 
-						  delegate:self 
-						  cancelButtonTitle:nil 
-						  otherButtonTitles:@"OK", nil];
-	[alert show];
-	[alert release];
-*/
 	[tv deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -116,17 +92,6 @@
 	WebArticlesController *webArticlesView = [[WebArticlesController alloc] init];
 	[delegate.navController pushViewController:webArticlesView animated:YES];
 	[webArticlesView release];
-	
-/*
-	 UIAlertView *alert = [[UIAlertView alloc] 
-						   initWithTitle:@"Information" 
-						   message:@"In RootController::addArticlesClicked"
-						   delegate:self 
-						   cancelButtonTitle:nil 
-						   otherButtonTitles:@"OK", nil];
-	 [alert show];
-	 [alert release]; 
-*/
 }
 
 /*

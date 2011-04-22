@@ -237,19 +237,6 @@ didSelectRowAtIndexPath:(NSIndexPath *) indexPath
 	WebArticleController *webArticle = [[WebArticleController alloc] initWithIndexPath:indexPath];
 	[delegate.navController pushViewController:webArticle animated:YES];
 	[webArticle release];
-	
-	
-	//Article *thisArticle = [articles objectAtIndex:indexPath.row];
-	/*
-	 UIAlertView *alert = [[UIAlertView alloc] 
-	 initWithTitle:thisArticle.title 
-	 message:thisArticle.link 
-	 delegate:self 
-	 cancelButtonTitle:nil 
-	 otherButtonTitles:@"OK", nil];
-	 [alert show];
-	 [alert release];
-	 */
 	[tv deselectRowAtIndexPath:indexPath animated:YES];
 }
 
