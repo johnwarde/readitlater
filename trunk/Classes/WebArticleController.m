@@ -21,6 +21,7 @@
 @synthesize sourceLabel;
 @synthesize categoryLabel;
 @synthesize commentsLabel;
+@synthesize saveButton;
 
 
 
@@ -91,6 +92,7 @@
 	newArticle.category = categoryLabel.text;
 	newArticle.comments = commentsLabel.text;
 	[delegate saveArticleToDatabase: newArticle];
+	[saveButton setHidden:YES];
 	delegate.needDataRefresh = YES;
 }
 
