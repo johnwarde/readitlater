@@ -218,7 +218,31 @@
 	sqlite3_close(database);
 }
 
-
+-(void) setReadFlagForArticle:(Article *) targetArticle withValue:(BOOL) boolValue {
+	sqlite3 *database;
+	if (sqlite3_open([self.savedFilePath UTF8String], &database) == SQLITE_OK) {
+		//const char* strBoolValue = bo
+		NSMutableString* sqlPrepare = [NSMutableString stringWithFormat:@"UPDATE articles SET read = %d WHERE id =  %@", 
+									   (int) boolValue, targetArticle.articleId];
+		NSLog(@"setReadFlagForArticle: sql = [%@]", sqlPrepare);
+		const char *sqlStatement = [sqlPrepare cStringUsingEncoding: NSISOLatin1StringEncoding];
+		
+		sqlite3_stmt *compiledStatement;
+		if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			NSLog(@"setReadFlagForArticle: sql success");
+		} else {
+			NSLog(@"setReadFlagForArticle: sql failed");
+			
+		}
+		if(sqlite3_step(compiledStatement) != SQLITE_DONE ) {
+			NSLog( @"Error: %s", sqlite3_errmsg(database) );
+		} else {
+			NSLog( @"Updated row id = %d", targetArticle.articleId);
+		}	
+		sqlite3_finalize(compiledStatement);
+	}
+	sqlite3_close(database);
+}
 
 #pragma mark -
 #pragma mark Memory management

@@ -71,6 +71,12 @@
 	categoryLabel.text	= thisArticle.category;
 	commentsLabel.text	= thisArticle.comments;	
 	
+	// Update the database indicate that the article has been read, if needed.
+	if (NO == [thisArticle.read boolValue]) {
+		delegate.needDataRefresh = YES;
+		[delegate setReadFlagForArticle: thisArticle withValue: YES];
+	}
+	
     [super viewDidLoad];
 }
 

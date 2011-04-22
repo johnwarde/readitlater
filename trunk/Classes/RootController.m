@@ -66,6 +66,9 @@
 	}
 	Article *thisArticle = [articles objectAtIndex: indexPath.row];
 	cell.textLabel.text = thisArticle.title;
+	if (NO == [thisArticle.read boolValue]) {
+		cell.textLabel.textColor = [UIColor redColor];
+	}
 	return cell;
 }
 
