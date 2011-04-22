@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -273,12 +275,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {215, 580}}</string>
+							<string>{{0, 49}, {215, 580}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -308,8 +309,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -327,7 +326,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3F2A86EC1361E62500EF781A</string>
+										<string>3F2A86FD1361E7B900EF781A</string>
 										<key>history</key>
 										<array>
 											<string>3F7FD9D3136076B0002B5791</string>
@@ -541,12 +540,12 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>3F2A85271361AE4400EF781A</string>
-		<string>3FBA6B21134F3B7800DB2937</string>
 		<string>3F2A84181361955200EF781A</string>
 		<string>3F2A84051361940300EF781A</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>3FE0DEB1134E702E003A94C0</string>
+		<string>3FBA6B21134F3B7800DB2937</string>
 		<string>/Users/student/johnwarde/xcodeprojects/ReadItLater/ReadItLater.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -1006,7 +1005,7 @@
 								<dict>
 									<key>PBXCVSModuleTreeModuleColumnWidthsKey</key>
 									<array>
-										<real>461</real>
+										<real>477</real>
 										<real>56</real>
 										<real>63</real>
 										<real>60</real>
@@ -1067,7 +1066,7 @@
 			<key>WindowToolGUID</key>
 			<string>3FBA6B21134F3B7800DB2937</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
