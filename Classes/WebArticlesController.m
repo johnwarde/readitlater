@@ -43,6 +43,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	[waitIcon startAnimating];
 	self.title = @"Online Articles";
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
 	onlineArticles = delegate.onlineArticles;
@@ -60,20 +61,20 @@
 - (void)startFeedRefresh {
 	[onlineArticles removeAllObjects];	
 	[waitIcon startAnimating];
-	[self loadFeed];
-	[waitIcon stopAnimating];
-	return;
 	
-/*	
-    // This code works, may try asynchronous download of feed again, get the NSXMLParser to parse the downloaded data
-	NSString *string = [NSString stringWithFormat:@"http://readitlater.googlecode.com/files/rss.xml"];
+	//NSString *string = [NSString stringWithFormat:@"http://tunepal.wordpress.com/feed/"];
+	//NSString *string = [NSString stringWithFormat:@"http://code.google.com/feeds/p/readitlater/updates/basic"];
+	//NSString *string = [NSString stringWithFormat:@"http://readitlater.googlecode.com/files/rss.xml"];
+	NSString *string = [NSString stringWithFormat:@"http://www.aranbay.com/downloads/rss.xml"];
+	// http://www.aranbay.com/downloads/rss.xml
 	NSURL *url = [[NSURL URLWithString:string] retain];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url 
 										  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
 										  timeoutInterval:10];
 	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-*/
+	return;
+   
+
  }
 
 /*
@@ -88,15 +89,11 @@
 
 /**************************************************************************/
 
--(void) loadFeed
-{
-	//NSURL * url = [NSURL URLWithString:@"http://tunepal.wordpress.com/feed/"];
-	//NSURL * url = [NSURL URLWithString:@"http://code.google.com/feeds/p/readitlater/updates/basic"];
-	NSURL * url = [NSURL URLWithString:@"http://readitlater.googlecode.com/files/rss.xml"];
+-(void) loadFeed {
 	
-	NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+	NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData: feedContent];
+	
 	// Can we cast to NSData from feedContent (NSMutableData) 
-	//NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData: feedContent];
 	[xmlParser setDelegate:self];
 
 	//Start parsing the XML file.
@@ -254,9 +251,6 @@
 didSelectRowAtIndexPath:(NSIndexPath *) indexPath
 {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
-	
-	
-
 	WebArticleController *webArticle = [[WebArticleController alloc] initWithIndexPath:indexPath];
 	[delegate.navController pushViewController:webArticle animated:YES];
 	[webArticle release];
@@ -308,7 +302,8 @@ connection didFailWithError:(NSError *)error
 	//. . . implementation code would go here ...
 	NSString *content = [[NSString alloc] initWithBytes:[feedContent bytes] length:[feedContent length] encoding:NSUTF8StringEncoding];
 	NSLog(@"Data = %@", content);
-	// Can we cast to NSData from feedContent (NSMutableData) 
+	[self loadFeed];
+	[self.tableOnlineArticles reloadData];
 	[waitIcon stopAnimating];
 	[content release];
 }
