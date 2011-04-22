@@ -3,6 +3,8 @@
 
 = Database Structure Only =
 
+{{{
+
 DROP TABLE IF EXISTS "articles";
 
 CREATE TABLE "articles" (
