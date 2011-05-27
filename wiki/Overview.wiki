@@ -22,7 +22,7 @@ Add your content here.  Format your content with:
     * That item will be marked "read" in the database.
     * The current table will be pushed onto the navigation stack and a new view will be presented with a "Delete" button at the top of the screen.  Followed by The title and description of the document and the content.
   * When the "Delete" button is pressed the corresponding row is deleted from the database.
-  * When there is any change to the on-device databased the Saved Articles table is refreshed using the ?? delegate.
+  * When there is any change to the on-device databased the Saved Articles table is refreshed using the SavedArticle delegate.
 
 || *Field Name* || *Type(size)* || *Required* || *RSS Field* || *Description* ||
 || id || INTEGER|| Yes || Yes || Internal ID of article||
