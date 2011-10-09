@@ -42,6 +42,7 @@
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
 	articles = delegate.articles;
 	delegate.navController.delegate = self;
+	self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [super viewDidLoad];
 }
 
@@ -63,21 +64,40 @@
 	if (nil == cell) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"cell"] autorelease];
 	}
-	Article *thisArticle = [articles objectAtIndex: indexPath.row];
-	cell.textLabel.text = thisArticle.title;
-	if (NO == [thisArticle.read boolValue]) {
-		cell.textLabel.textColor = [UIColor redColor];
+	if (indexPath.row < articles.count) {
+		Article *thisArticle = [articles objectAtIndex: indexPath.row];
+		cell.textLabel.text = thisArticle.title;
+		if (NO == [thisArticle.read boolValue]) {
+			cell.textLabel.textColor = [UIColor redColor];
+		} else {
+			cell.textLabel.textColor = [UIColor blackColor];
+		}
 	} else {
-		cell.textLabel.textColor = [UIColor blackColor];
+		cell.textLabel.text = @"Add Note ...";
+		cell.textLabel.textColor = [UIColor lightGrayColor];
+		cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
-
 	return cell;
+}
+
+- (UITableViewCellEditingStyle) tableView:(UITableView *) tv 
+  editingStyleForRowAtIndexPath:(NSIndexPath *) indexPath {
+	if (indexPath.row < articles.count) {
+		return UITableViewCellEditingStyleDelete;
+	} else {
+		return UITableViewCellEditingStyleInsert;
+	}
 }
 
 
 - (NSInteger) tableView:(UITableView *) tv numberOfRowsInSection: (NSInteger) section
 {
-	return [articles count];
+	//return [articles count];
+	NSInteger count = [articles count];
+	if (self.editing) {
+		count++;
+	}
+	return count;
 }
 
 
@@ -91,6 +111,35 @@
 	[tv deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void) setEditing:(BOOL)editing animated:(BOOL) animated {
+	if (editing != self.editing) {
+		[super setEditing:editing animated:animated];
+		[tableSavedArticles setEditing:editing animated:animated];
+		
+		NSArray *indexes = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:articles.count inSection:0]];
+		if (editing == YES) {
+			[tableSavedArticles insertRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationLeft];
+		} else {
+			[tableSavedArticles deleteRowsAtIndexPaths:indexes withRowAnimation:UITableViewRowAnimationLeft];
+		}
+	}
+}
+
+
+- (void) tableView:(UITableView *) tv
+ commitEditingStyle:(UITableViewCellEditingStyle) editing 
+ forRowAtIndexPath:(NSIndexPath *) indexPath {
+	if (editing == UITableViewCellEditingStyleDelete) {
+		// Delete from database first
+		ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
+		Article *article = [articles objectAtIndex:indexPath.row];
+		[delegate deleteArticleIdFromDatabase:article.articleId];
+		// Now from the UI
+		[articles removeObjectAtIndex: indexPath.row];
+		[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+	}
+}
+	
 
 -(IBAction) addArticlesClicked:(id) sender {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
