@@ -273,7 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>5</integer>
+									<integer>15</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -316,7 +316,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RootController.m</string>
+								<string>ReadItLaterDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,28 +324,30 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RootController.m</string>
+										<string>ReadItLaterDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3FBC4E4A144251F2008587F6</string>
+										<string>3FBC4EC514426A05008587F6</string>
 										<key>history</key>
 										<array>
 											<string>3F6F0FB913D617D4001459F8</string>
 											<string>3FE25AA21401C54500B94254</string>
 											<string>3F7E8A05140255E800E69FCF</string>
-											<string>3FCF92C61404F1DA00E14404</string>
-											<string>3FCF937C1405676700E14404</string>
-											<string>3FFCFBCC142128D30010908F</string>
-											<string>3FFCFC20142134CC0010908F</string>
-											<string>3FE82BFB1421F9AB002FABE7</string>
-											<string>3FBC4E0B144243A0008587F6</string>
 											<string>3FBC4E0C144243A0008587F6</string>
 											<string>3FBC4E45144251F2008587F6</string>
-											<string>3FBC4E46144251F2008587F6</string>
 											<string>3FBC4E47144251F2008587F6</string>
 											<string>3FBC4E48144251F2008587F6</string>
-											<string>3FBC4E49144251F2008587F6</string>
+											<string>3FBC4EAC144268ED008587F6</string>
+											<string>3FBC4EAD144268ED008587F6</string>
+											<string>3FBC4EAE144268ED008587F6</string>
+											<string>3FBC4EAF144268ED008587F6</string>
+											<string>3FBC4EB0144268ED008587F6</string>
+											<string>3FBC4EB1144268ED008587F6</string>
+											<string>3FBC4EB2144268ED008587F6</string>
+											<string>3FBC4EB3144268ED008587F6</string>
+											<string>3FBC4EC314426A05008587F6</string>
+											<string>3FBC4EC414426A05008587F6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -543,9 +545,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>3FBC4EBF144269C1008587F6</string>
+		<string>3FBC4E64144255B3008587F6</string>
+		<string>3FBC4E65144255B3008587F6</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>3FE0DEB1134E702E003A94C0</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/student/johnwarde/xcodeprojects/ReadItLater/ReadItLater.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -570,7 +576,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RootController.m</string>
+								<string>AddArticleController.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -785,12 +791,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ReadItLaterDelegate.m</string>
+										<string>WebArticlesController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -811,8 +819,6 @@
 							<string>294pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -848,8 +854,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>3F47A38314177EA0003DE973</string>
-				<string>3F47A38414177EA0003DE973</string>
+				<string>3FBC4EB7144268ED008587F6</string>
+				<string>3FBC4EB8144268ED008587F6</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
