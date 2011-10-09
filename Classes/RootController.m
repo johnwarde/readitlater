@@ -11,6 +11,7 @@
 #import "WebArticlesController.h"
 #import "ReadItLaterDelegate.h"
 #import "Article.h"
+#import "AddArticleController.h"
 
 @implementation RootController
 
@@ -105,9 +106,17 @@
 	didSelectRowAtIndexPath:(NSIndexPath *) indexPath
 {
 	ReadItLaterDelegate *delegate = (ReadItLaterDelegate *)[[UIApplication sharedApplication] delegate];
-	SavedArticleController *savedArticle = [[SavedArticleController alloc] initWithIndexPath:indexPath];
-	[delegate.navController pushViewController:savedArticle animated:YES];
-	[savedArticle release];
+	
+	if (indexPath.row < articles.count && !self.editing) {
+		SavedArticleController *savedArticle = [[SavedArticleController alloc] initWithIndexPath:indexPath];
+		[delegate.navController pushViewController:savedArticle animated:YES];
+		[savedArticle release];
+	}
+	if (indexPath.row == articles.count && self.editing) {
+		AddArticleController *addArticle = [[AddArticleController alloc] init];
+		[delegate.navController pushViewController:addArticle animated:YES];
+		[addArticle release];
+	}
 	[tv deselectRowAtIndexPath:indexPath animated:YES];
 }
 
